@@ -1,5 +1,6 @@
-
-// Jan 2024 ReDo
+// Thanks Rual
+  // Jan 2024 ReDo
+  // Completed Housing 1/17/2024
   // Baud Rate Check GPS Set to 9600 !!!!!!!!!!!!!!!!!!!!!!!!!!! 
   // EEPROM holds and same $GPZDA string works
   // Use ONLY $GNZDA String M8N Mogule 9/26/2021 READ !!!!!!!!!!!!!!!!!!!!
@@ -7,7 +8,7 @@
   // Using Nano
   // 2/14/2024 Delay on first screen works 
   // NEO6M GPS MODULE
-
+  // Today Code cleaning and Commenting 2_18_2024
 
 
 
@@ -19,7 +20,10 @@
   //Connect the TX of the GPS to RX pin D1 on the Nano
   //Connect the RX of the GPS to pin D0 I think this connection does nothing????????
   //Connect SCL and SCA fron the Arduino to the LCD This is SCL to pin 5 and SCA to pin 4
-  // ONLY LCD WORKS NO OUTPUT AT ALL
+  //
+  //
+  //DO NOT CONNECT A GROUND WIRE TO THE COUNTER THIS WILL MAKE THE ARDUINO COUNT UP FAST AND IGNORE THE PROGRAM????????
+  //ONLY ABLE TO USE 5V USB POWER BANK TO POWER THIS PROJECT AS A WALWART MAKES THE ARDUINO COUNT UP FAST????
 
   
   uint8_t rows = 4;
@@ -57,13 +61,13 @@ void pulseTheTime(long counter) {
 ///////////////////////////Start Up Screen////////////////
 void setup() {
 
-  lcd.init();
-  lcd.init();
-  lcd.backlight(); 
+  lcd.init();       //Copied From Example Code
+  lcd.init();       //Copied From Example Code
+  lcd.backlight();  //Copied From Example Code
 
-   //Start Up Screen
+                      //Start Up Screen
   lcd.setCursor(0, 1);
-  lcd.print(" -+-[Rual GPS]-+-");    //Start Screen
+  lcd.print(" -G-[Rual GPS]-G-");    //Start Screen Added G shows its me looking at code
   lcd.setCursor(0, 2);
   lcd.print("..PROGRAM STARTING..");    //Start Screen
   delay(3000);    // Would like the above to show on the lcd screen for 3 seconds
@@ -128,7 +132,8 @@ void loop() {
       pulseTheTime(advance);
       timeset = 40;
     }
-                                  //Can we set the time zone???????????
+                //Can we set the time zone???????????
+                //Can we set Daylight Savings Time ??????????
     if (gpsString.substring(11, 13) == "00") {
       advance = 40;
       pulseTheTime(advance);
@@ -182,4 +187,3 @@ void loop() {
 
 
 }
-
